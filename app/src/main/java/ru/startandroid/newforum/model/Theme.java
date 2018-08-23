@@ -6,13 +6,15 @@ public class Theme {
     private String date;
     private int answersCount;
     private boolean isRead;
+    public int id;
 
-    public Theme(String title, String lastAuthor, String date, int answersCount, boolean isRead) {
+    public Theme(String title, String lastAuthor, String date, int answersCount, boolean isRead, int id) {
         this.title = title;
         this.lastAuthor = lastAuthor;
         this.date = date;
         this.answersCount = answersCount;
         this.isRead = isRead;
+        this.id = id;
     }
 
     public void setTitle(String title) {

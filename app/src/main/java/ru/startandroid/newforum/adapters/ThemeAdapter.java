@@ -2,6 +2,7 @@ package ru.startandroid.newforum.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.startandroid.newforum.R;
+import ru.startandroid.newforum.ThemeActivity;
 import ru.startandroid.newforum.model.Theme;
 
 public class ThemeAdapter extends BaseAdapter {
@@ -50,7 +52,17 @@ public class ThemeAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.theme_item, parent, false);
         }
 
-        Theme theme = themes.get(i);
+        final Theme theme = themes.get(i);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ctx, ThemeActivity.class);
+                intent.putExtra("themeId", theme.id);
+                ctx.startActivity(intent);
+            }
+        };
+        parent.setOnClickListener(listener);
 
         ((TextView) view.findViewById(R.id.theme_title)).setText(theme.getTitle());
         ((TextView) view.findViewById(R.id.message_count)).setText("" + theme.getAnswersCount()+" комм.");

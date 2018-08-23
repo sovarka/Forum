@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         List<Theme> themes = Arrays.asList(
-                new Theme("Изменение раписания","Мария Кузнецова","27.05.2018",2,true),
-                new Theme("Каникулы","Петр Иванов","25.05.2018",4,false),
-                new Theme("Математика","Иван Зайцев","10.05.2018",17,true)
+                new Theme("Изменение раписания","Мария Кузнецова","27.05.2018",2,true, 0),
+                new Theme("Каникулы","Петр Иванов","25.05.2018",4,false, 1),
+                new Theme("Математика","Иван Зайцев","10.05.2018",17,true, 2)
         );
 
 
         ThemeAdapter adapter = new ThemeAdapter(this, themes);
-        ListView listView = (ListView) findViewById(R.id.listview);
+        ListView listView = findViewById(R.id.listview);
         listView.setAdapter(adapter);
         FloatingActionButton newAction = findViewById(R.id.fab);
         newAction.setOnClickListener(this);

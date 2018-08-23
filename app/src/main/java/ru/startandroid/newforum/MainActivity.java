@@ -1,10 +1,12 @@
 package ru.startandroid.newforum;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -52,6 +54,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ThemeAdapter adapter = new ThemeAdapter(this, themes);
         ListView listView = findViewById(R.id.listview);
+
+        final Context ctx = this;
+
+        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(ctx, ThemeActivity.class);
+                intent.putExtra("themeId", adapterView.getItemIdAtPosition(i));
+                ctx.startActivity(intent);
+            }
+        };
+
+        listView.setOnItemClickListener(listener);
         listView.setAdapter(adapter);
         FloatingActionButton newAction = findViewById(R.id.fab);
         newAction.setOnClickListener(this);

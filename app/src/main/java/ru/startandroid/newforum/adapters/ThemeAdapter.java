@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ public class ThemeAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return ((Theme) getItem(i)).id;
     }
 
     @SuppressLint("SetTextI18n")
@@ -54,18 +55,8 @@ public class ThemeAdapter extends BaseAdapter {
 
         final Theme theme = themes.get(i);
 
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ctx, ThemeActivity.class);
-                intent.putExtra("themeId", theme.id);
-                ctx.startActivity(intent);
-            }
-        };
-        parent.setOnClickListener(listener);
-
         ((TextView) view.findViewById(R.id.theme_title)).setText(theme.getTitle());
-        ((TextView) view.findViewById(R.id.message_count)).setText("" + theme.getAnswersCount()+" комм.");
+        ((TextView) view.findViewById(R.id.message_count)).setText(theme.getAnswersCount() + " комм.");
         ((TextView) view.findViewById(R.id.author_name)).setText(theme.getLastAuthor());
         ((TextView) view.findViewById(R.id.date)).setText(theme.getDate());
 
